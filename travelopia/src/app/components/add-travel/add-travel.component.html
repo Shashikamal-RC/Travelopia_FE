@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>Traveller Form</h1>
+    </div>
+    <div>
+      <button
+        type="submit"
+        mat-flat-button
+        color="primary"
+        [routerLink]="['/travel_list']"
+      >
+        Travel List
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="travellerForm" (ngSubmit)="onSubmit()" class="form">
+    <div class="example-container">
+      <!-- Username -->
+      <mat-form-field appearance="outline" class="form-element">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          placeholder="Enter Username"
+          formControlName="name"
+          required
+        />
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="form-element">
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="travel@example.com"
+          formControlName="email"
+          required
+        />
+      </mat-form-field>
+
+      <!-- Location -->
+      <mat-form-field appearance="outline" class="form-element">
+        <mat-label>Select location</mat-label>
+        <mat-select formControlName="location" required>
+          <mat-option
+            *ngFor="let location of locations"
+            [value]="location.id"
+            >{{ location.name }}</mat-option
+          >
+        </mat-select>
+        <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+      </mat-form-field>
+
+      <!-- Number of people -->
+      <mat-form-field appearance="outline" class="form-element">
+        <mat-label>Number of people</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Number of people"
+          formControlName="num_of_travellers"
+          required
+        />
+        <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+
+      <!-- Budget per person -->
+      <mat-form-field
+        appearance="outline"
+        floatLabel="always"
+        class="form-element"
+      >
+        <mat-label>Budget per person</mat-label>
+        <input
+          formControlName="budget_per_person"
+          matInput
+          type="number"
+          class="example-right-align"
+          placeholder="0"
+          required
+        />
+        <span matPrefix>$&nbsp;</span>
+        <!-- <span matSuffix>.00</span> -->
+      </mat-form-field>
+
+      <div align="end">
+        <button type="submit" mat-flat-button color="primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
